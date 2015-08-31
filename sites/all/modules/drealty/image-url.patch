@@ -1,0 +1,503 @@
+ drealty.daemon.php                          | 177 ++++++----------------------
+ drealty.install                             |  11 +-
+ includes/drealty.connection.admin.inc       |  34 +++---
+ modules/drealty_image/drealty_image.info    |   5 -
+ modules/drealty_image/drealty_image.install |  19 ---
+ modules/drealty_image/drealty_image.module  | 104 ----------------
+ 6 files changed, 64 insertions(+), 286 deletions(-)
+ delete mode 100644 modules/drealty_image/drealty_image.info
+ delete mode 100644 modules/drealty_image/drealty_image.install
+ delete mode 100644 modules/drealty_image/drealty_image.module
+
+diff --git a/drealty.daemon.php b/drealty.daemon.php
+index 79367b1..3dbad01 100644
+--- a/drealty.daemon.php
++++ b/drealty.daemon.php
+@@ -427,51 +427,22 @@ class drealtyDaemon {
+ 
+ 
+       if ($class->process_images) {
+-        //get the images
+-        $results = $rets->GetObject($resource->systemname, $class->object_type, $listing->rets_key, '*');
+-        $img_dir = file_default_scheme() . "://{$class->image_dir}";
+-        $img_field = $class->image_field_name;
++        $link_fields = @unserialize($class->image_link_fields);
++        
++        foreach ($link_fields as $object => $field) {
++          $results = $rets->GetObject($resource->systemname, $object, $listing->rets_key, '*', 1);
+ 
+-        //sort the images
+-        if ($results) {
+-          $photos = array();
+-          foreach ($results as $item) {
+-            $photos[$item['Object-ID']] = $item;
+-          }
+-          ksort($photos, SORT_NUMERIC);
+-
+-          // delete out any existing images
+-          if (isset($listing->{$img_field}[LANGUAGE_NONE])) {
+-            foreach ($listing->{$img_field}[LANGUAGE_NONE] as $key => $file) {
+-              $image = file_load($file['fid']);
+-              unset($listing->{$img_field}[LANGUAGE_NONE][$key]);
+-              if (!empty($image)) {
+-                file_delete($image);
+-              }
+-            }
+-          }
++          if ($results) {
++            $listing->{$field}[LANGUAGE_NONE] = array();
+ 
+-          unset($listing->{$img_field}[LANGUAGE_NONE]);
+-
+-          foreach ($photos as $photo) {
+-            $mlskey = $photo['Content-ID'];
+-            $number = $photo['Object-ID'];
+-            $filename = $mlskey . '-' . REQUEST_TIME . '-' . $number . '.jpg';
+-            $filepath = "{$img_dir}/{$filename}";
+-            //ensure that there is enough data to actually make a file.
+-            if (strlen($photo['Data']) > 173) {
+-              if ($file = file_save_data($photo['Data'], $filepath, FILE_EXISTS_REPLACE)) {
+-                //make sure we actually save the image
+-                $file->alt = '';
+-                $file->title = '';
+-                $listing->{$img_field}[LANGUAGE_NONE][] = (array) $file;
+-              }
++            foreach ($results as $item) {
++              $listing->{$field}[LANGUAGE_NONE][] = array('url' => $item['Location'], 'title' => 'Photo');
+             }
+           }
+         }
+-      }
+ 
+-      $listing->rets_photo_modification_timestamp = $item_context['rets_item'][$class->photo_timestamp_field];
++        $listing->rets_photo_modification_timestamp = $item_context['rets_item'][$class->photo_timestamp_field];
++      }
+ 
+       try {
+         drupal_alter('drealty_import_presave', $listing, $item_context);
+@@ -482,6 +453,7 @@ class drealtyDaemon {
+         drupal_set_message($e->getMessage(), 'error');
+         return FALSE;
+       }
++
+       $this->dc->disconnect();
+       return TRUE;
+     }
+@@ -708,8 +680,7 @@ class drealtyDaemon {
+       return;
+     }
+ 
+-    $img_field = $class->image_field_name;
+-    $dir = $class->image_dir;
++    $link_fields = @unserialize($class->image_link_fields);
+ 
+     $rets = $this->dc->rets;
+     $entity_type = 'drealty_listing';
+@@ -732,18 +703,8 @@ class drealtyDaemon {
+     //make sure we have something to process
+     if (count($items) >= 1) {
+       drush_log("process_images() - Starting.");
+-      $img_dir = file_default_scheme() . "://$dir";
+-
+-      if (!file_prepare_directory($img_dir, FILE_MODIFY_PERMISSIONS | FILE_CREATE_DIRECTORY)) {
+-        drush_log(dt("Failed to create %directory.", array('%directory' => $img_dir)), "error");
+-        return;
+-      } else {
+-        if (!is_dir($img_dir)) {
+-          drush_log(dt("Failed to locate %directory.", array('%directory' => $img_dir)), "error");
+-          return;
+-        }
+-      }
+ 
++      $this->dc->connect($conid);
+ 
+       $process_array = array_chunk($items, $chunk_size, TRUE);
+ 
+@@ -758,13 +719,12 @@ class drealtyDaemon {
+           $listings[$listing->rets_key] = $listing;
+           unset($listings[$key]);
+         }
++        
++        $id_string = implode(',', $ids);
++        drush_log("id string: " . $id_string);
+ 
+-
+-        if ($this->dc->connect($conid)) {
+-          $id_string = implode(',', $ids);
+-          drush_log("id string: " . $id_string);
+-
+-          $results = $rets->GetObject($resource->systemname, $class->object_type, $id_string, '*');
++        foreach ($link_fields as $object => $field) {
++          $results = $rets->GetObject($resource->systemname, $object, $id_string, '*', 1);
+ 
+           if ($rets->Error()) {
+             $error = $rets->Error();
+@@ -772,98 +732,39 @@ class drealtyDaemon {
+             return;
+           }
+ 
++          // Remove all images of this type in the current chunk.
++          foreach ($listings as &$listing) {
++            $listing->{$field}[LANGUAGE_NONE] = array();
++          }
++
+           $photos = array();
++          
++          $total = 0;
+ 
+           if (!empty($results)) {
+-            $length = 0;
+-            $total = 0;
+-            $photos = array();
+-
+             foreach ($results as $item) {
+-              if ($item['Success'] == TRUE) {
+-                if (strlen($item['Data']) > 173) {
+-                  $total++;
+-                  $length += strlen($item['Data']);
+-
+-                  if (!isset($photos[$item['Content-ID']])) {
+-                    $photos[$item['Content-ID']] = array();
+-                  }
+-                  $photos[$item['Content-ID']][$item['Object-ID']] = $item;
+-                } else {
+-                  drush_log(dt("Images failed to download: @code - @text", array('@code' => $item['ReplyCode'], '@text' => $item['ReplyText'])), 'warning');
+-                }
+-              }
+-            }
+-
+-            ksort($photos, SORT_NUMERIC);
+-            foreach ($photos as $key => $set) {
+-              ksort($photos[$key], SORT_NUMERIC);
++              $listing = $listings[$item['Content-ID']];
++              $listing->{$field}[LANGUAGE_NONE][] = array('url' => $item['Location'], 'title' => 'Photo');
++              $total++;
+             }
+-            drush_log(dt("Downloaded a total of @total images for @count Listings.", array("@total" => $total, "@count" => count($ids))));
++            
++            drush_log(dt("Downloaded @field URL for a total of @total images for @count listings.", array('@field' => $field, "@total" => $total, "@count" => count($ids))));
+           } else {
+             drush_log(dt("GetObject for @resource - @class returned an empty result set.", array('@resource' => $resource->systemname, '@class' => $class->systemname)), 'warning');
+           }
++        }
+ 
+-          $this->dc->disconnect();
+-
+-          unset($ids, $results);
+-
+-          $id_string = "";
+-          $counter = 0;
+-
+-          foreach ($photos as $list_id => $set) {
+-
+-            $listing = $listings[$list_id];
+-
+-            // delete out any existing images
+-            if (isset($listing->{$img_field}[LANGUAGE_NONE])) {
+-              foreach ($listing->{$img_field}[LANGUAGE_NONE] as $key => $file) {
+-                $image = file_load($file['fid']);
+-                unset($listing->{$img_field}[LANGUAGE_NONE][$key]);
+-                if (!empty($image)) {
+-                  file_delete($image);
+-                }
+-              }
+-            }
+-
+-            unset($listing->{$img_field}[LANGUAGE_NONE]);
+-
+-            foreach ($set as $key => $photo) {
+-              $mlskey = $photo['Content-ID'];
+-              $number = $photo['Object-ID'];
+-              $filename = $mlskey . '-' . REQUEST_TIME . '-' . $number . '.jpg';
+-              $filepath = "{$img_dir}/{$filename}";
+-              //ensure that there is enough data to actually make a file.
+-              if (strlen($photo['Data']) > 173) {
+-                if ($file = file_save_data($photo['Data'], $filepath, FILE_EXISTS_REPLACE)) {
+-                  //make sure we actually save the image
+-                  $file->alt = '';
+-                  $file->title = '';
+-                  $listing->{$img_field}[LANGUAGE_NONE][] = (array) $file;
+-                }
+-              }
+-            }
+-
+-            $listing->process_images = 0;
+-            $listing->save();
+-
+-            drush_log(dt("Saved @count images for @listing", array("@count" => count($set), "@listing" => $list_id)), "success");
+-            unset($photos[$list_id], $listings[$list_id]);
+-            drupal_get_messages();
+-            drupal_static_reset();
+-          }
+-          // apparently some mls feeds have listings with 0 images, set them as processed
+-          foreach ($listings as $listingid => $listing) {
+-            $listing->process_images = 0;
+-            $listing->save();
+-            drush_log(dt("Listing @id had no images. Marking as processed.", array("@id" => $listingid)), 'warning');
+-            drupal_get_messages();
+-            drupal_static_reset();
+-          }
+-          unset($photos, $listings);
++        // Save all the listings in this chunk.
++        foreach ($listings as &$listing) {
++          $listing->process_images = 0;
++          $listing->save();
+         }
++
++        drupal_get_messages();
++        drupal_static_reset();
+       }
+     }
++    $this->dc->disconnect();
+     cache_clear_all("prop_images_to_process", "cache");
+   }
+ 
+diff --git a/drealty.install b/drealty.install
+index 9b5d165..8226596 100644
+--- a/drealty.install
++++ b/drealty.install
+@@ -158,6 +158,7 @@ function drealty_schema() {
+       'status_values' => array('type' => 'varchar', 'length' => 255, 'not null' => FALSE, 'default' => ''),
+       'process_images' => array('type' => 'int', 'unsigned' => TRUE, 'size' => 'normal', 'not null' => TRUE, 'default' => 0),
+       'image_field_name' => array('type' => 'varchar', 'length' => 50, 'not null' => FALSE),
++      'image_link_fields' => array('type' => 'varchar', 'length' => 255, 'not null' => TRUE, 'default' => ''),
+       'image_dir' => array('type' => 'varchar', 'length' => 50, 'not null' => FALSE),
+       'object_type' => array('type' => 'varchar', 'length' => 255, 'not null' => FALSE),
+       'image_chunk_size' => array('type' => 'int', 'unsigned' => TRUE, 'size' => 'normal', 'not null' => TRUE, 'default' => 25),
+@@ -391,4 +392,12 @@ function drealty_update_7306(&$sandbox) {
+  */
+ function drealty_update_7307(&$sandbox) {
+   db_add_field('drealty_connections', 'nomap_mode', array('type' => 'int', 'unsigned' => TRUE, 'not null' => TRUE, 'default' => 0));
+-}
+\ No newline at end of file
++}
++
++/**
++ * Add a image_link_fields column to drealty_classes.
++ * @param $sandbox
++ */
++function drealty_update_7308(array &$sandbox) {
++  db_add_field('drealty_classes', 'image_link_fields', array('type' => 'varchar', 'length' => 255, 'not null' => TRUE, 'default' => ''));
++}
+diff --git a/includes/drealty.connection.admin.inc b/includes/drealty.connection.admin.inc
+index d3d51aa..4701238 100644
+--- a/includes/drealty.connection.admin.inc
++++ b/includes/drealty.connection.admin.inc
+@@ -1051,14 +1051,14 @@ function drealty_resource_configure_form($form, &$form_state, drealtyConnectionE
+ 
+     foreach ($field_instances as $field_instance) {
+       $field = field_read_field($field_instance['field_name']);
+-      if ($field['type'] == 'image') {
++      if ($field['type'] == 'link_field') {
+         $img_field_opts[$field['field_name']] = $field_instance['label'];
+       }
+     }
+ 
+     if (count($img_field_opts) <= 0) {
+       $form['feed']['images']['no_image_field'] = array(
+-        '#markup' => t('<div class="messages warning">There are no image fields defined for the Property Type associated with this class. In order to associate images you will need to create an image field to hold them.</div>'),
++        '#markup' => t('<div class="messages warning">There are no link fields defined for the Property Type associated with this class. In order to associate images you will need to create link fields to hold them.</div>'),
+         '#states' => array(
+           'visible' => array(':input[name="process_images"]' => array('checked' => TRUE)),
+         ),
+@@ -1085,29 +1085,26 @@ function drealty_resource_configure_form($form, &$form_state, drealtyConnectionE
+       ),
+     );
+ 
+-    $form['feed']['images']['object_type'] = array(
+-      '#type' => 'select',
+-      '#multiple' => FALSE,
+-      '#title' => t('Object types to download'),
+-      '#description' => t('Each MLS provides zero or more object types (photos) to download for each listing. Select the object type you would like to download.'),
+-      '#options' => $opts_object_types,
+-      '#default_value' => $class->object_type,
++    $form['feed']['images']['image_link_fields'] = array(
++      '#type' => 'fieldset',
++      '#title' => t('Field Selection'),
++      '#collapsible' => FALSE,
++      '#description' => t('Select the link field you would like to store the images URLs for this object type. You will need to create link fields if there are none to select.'),
+       '#states' => array(
+         'visible' => array(':input[name="process_images"]' => array('checked' => TRUE)),
+       ),
++      '#tree' => TRUE,
+     );
+ 
+-    if (count($img_field_opts) >= 1) {
+-      $form['feed']['images']['image_field_name'] = array(
++    $link_fields = @unserialize($class->image_link_fields);
++
++    foreach ($opts_object_types as $object_type => $label) {
++      $form['feed']['images']['image_link_fields'][$object_type] = array(
+         '#type' => 'select',
+         '#multiple' => FALSE,
+-        '#title' => t('Image Field'),
+-        '#description' => t('Select the Image Field you would like to store the images in. You will need to create an image field if there are none to select.'),
++        '#title' => $label,
+         '#options' => $img_field_opts,
+-        '#default_value' => NULL,
+-        '#states' => array(
+-          'visible' => array(':input[name="process_images"]' => array('checked' => TRUE)),
+-        ),
++        '#default_value' => isset($link_fields[$object_type]) ? $link_fields[$object_type] : NULL,
+       );
+     }
+ 
+@@ -1219,8 +1216,7 @@ function drealty_resource_configure_form_submit($form, &$form_state) {
+ 
+   if ($form_state['has_images'] && $form_state['values']['process_images']) {
+     $class->process_images = $form_state['values']['process_images'];
+-    $class->object_type = $form_state['values']['object_type'];
+-    $class->image_field_name = $form_state['values']['image_field_name'];
++    $class->image_link_fields = serialize($form_state['values']['image_link_fields']);
+     $class->image_chunk_size = $form_state['values']['image_chunk_size'];
+ 
+     $tmp_image_timestamp = explode(' - ', $form_state['values']['modification_timestamp_field']);
+diff --git a/modules/drealty_image/drealty_image.info b/modules/drealty_image/drealty_image.info
+deleted file mode 100644
+index b1956e0..0000000
+--- a/modules/drealty_image/drealty_image.info
++++ /dev/null
+@@ -1,5 +0,0 @@
+-name = Drealty Image Field
+-description = Provides an image field for hotlinked images from a RETS feed.
+-core = 7.x
+-package = Real Estate
+-hidden=true
+\ No newline at end of file
+diff --git a/modules/drealty_image/drealty_image.install b/modules/drealty_image/drealty_image.install
+deleted file mode 100644
+index 76af4cf..0000000
+--- a/modules/drealty_image/drealty_image.install
++++ /dev/null
+@@ -1,19 +0,0 @@
+-<?php
+-/**
+- * @file
+- * Installation functions for the drealty image field.
+- */
+-
+-function drealty_image_field_schema($field) {
+-  $columns = array(
+-      'url' => array(
+-          'description' => 'The url where the image is located.',
+-          'type' => 'varchar',
+-          'length' => 255,
+-          'default' => '',
+-          'not null' => FALSE,
+-      ),
+-  );
+-
+-  return array('columns' => $columns);
+-}
+\ No newline at end of file
+diff --git a/modules/drealty_image/drealty_image.module b/modules/drealty_image/drealty_image.module
+deleted file mode 100644
+index bd22a91..0000000
+--- a/modules/drealty_image/drealty_image.module
++++ /dev/null
+@@ -1,104 +0,0 @@
+-<?php
+-/**
+- * @file
+- * Provides an image fied for hotlinking images from a RETS feed.
+- */
+-
+-/**
+- * Implements hook_field_info().
+- */
+-function drealty_image_field_info() {
+-  $fields = array();
+-
+-  $fields['drealty_image'] = array(
+-      'label' => t('Drealty Image'),
+-      'description' => t('A field type used for hotlinking images from a RETS feed. (RETS server must support this.)'),
+-      'settings' => array(),
+-      'instance_settings' => array('css_class' => ''),
+-      'default_widget' => 'drealty_image_standard',
+-      'default_formatter' => 'drealty_image_default',
+-  );
+-
+-  return $fields;
+-}
+-
+-/**
+- * Implements hook_field_is_empty().
+- */
+-function drealty_image_is_empty($item, $field) {
+-  if (empty($item['url']) && drupal_strlen(trim($item['url'])) <= 0) {
+-    return TRUE;
+-  }
+-  return FALSE;
+-}
+-
+-/**
+- * @todo Implement hook_field_instance_settings_form().
+- */
+-function drealty_image_instance_settings_form($field, $instance) {
+-  $settings = $instance['settings'];
+-
+-  $form['css_class'] = array(
+-      '#type' => 'textfield',
+-      '#title' => t('Css Class'),
+-      '#default_value' => $settings['css_class'],
+-      '#description' => t('The minimum value that should be allowed in this field. Leave blank for no minimum.'),
+-  );
+-
+-  return $form;
+-}
+-
+-/**
+- * Implements hook_field_formatter_info().
+- */
+-function drealty_image_field_formatter_info() {
+-  return array(
+-      'drealty_image_default' => array(
+-          'label' => t('Default'),
+-          'field types' => array('drealty_image'),
+-          'settings' => array(
+-              'use_widget_handlers' => 1,
+-              'format_handlers' => array('drealty_image'),
+-          ),
+-      ),
+-  );
+-}
+-
+-/**
+- * @todo Implement hook_field_formatter_settings_summary().
+- */
+-function drealty_image_formatter_settings_summary($field, $instance, $view_mode) {
+-  return '';
+-}
+-
+-/**
+- * @todo Implement hook_field_formatter_view().
+- */
+-function drealty_image_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+-  $element = array();
+-  $settings = $display['settings'];
+-  foreach ($items as $delta => $item) {
+-    $output = "<img src='{$item['url']}' alt=''" . isset($settings['css_class']) ? "class='{$settings['css_class']}'" : "" . " />";
+-    $element[$delta] = array('#markup' => $output);
+-  }
+-  return $element;
+-}
+-
+-/**
+- * @todo Implement hook_field_widget_info().
+- */
+-function drealty_image_widget_info() {
+-  return array(
+-      'drealty_image_standard' => array(
+-          'label' => t('Standard Widget'),
+-          'field types' => array('drealty_image'),
+-      ),
+-  );
+-}
+-
+-/**
+- * @todo Implement hook_field_widget_form().
+- */
+-function drealty_image_widget_form(&$form, &$form_state, $field, $instance, $langcode, $items, $delta, $element) {
+-  return array('value' => $element);
+-}
+\ No newline at end of file

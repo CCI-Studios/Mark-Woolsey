@@ -1,0 +1,1373 @@
+* {
+  margin: 0;
+  padding: 0; }
+
+a img {
+  border: 0; }
+
+input, select, textarea, button {
+  font-family: inherit; }
+
+body {
+  font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+a {
+  text-decoration: none;
+  font-family: "proxima-nova",sans-serif;
+  color: black; }
+
+hr {
+  border: 0px;
+  border-top: 2px solid #ddddde; }
+
+h1 {
+  color: #0066b1; }
+
+.block-views h2 {
+  color: #ed1b24;
+  font-size: 24px;
+  padding-bottom: 20px;
+  font-weight: bold; }
+
+#header {
+  background: #ed1b24;
+  color: white;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  position: relative;
+  z-index: 99999; }
+
+.region-header, .region-footer2, #content .inner-content {
+  max-width: 1060px;
+  margin: 0 auto;
+  overflow: hidden;
+  padding: 0px 10px; }
+
+#block-block-1 {
+  font-size: 24px;
+  width: 277px;
+  float: left;
+  padding: 15px 0px; }
+  #block-block-1 a {
+    color: white;
+    text-decoration: none; }
+  #block-block-1 img {
+    vertical-align: middle; }
+  #block-block-1 span {
+    padding: 0px 5px;
+    vertical-align: middle; }
+
+.page-mls .inner-box1,
+.page-open-houses .inner-box1 {
+  max-width: 800px;
+  margin: 0 auto; }
+
+html,
+body,
+#front-header,
+#block-block-2,
+#page-wrapper,
+.region-front-header {
+  height: 100%;
+  position: relative; }
+
+#front-header {
+  background-size: cover;
+  margin-top: -60px; }
+
+#block-system-main-menu {
+  position: relative;
+  float: right;
+  width: 62%;
+  line-height: 31px; }
+  #block-system-main-menu ul.menu {
+    float: left;
+    display: table;
+    padding-left: 0px; }
+    #block-system-main-menu ul.menu li {
+      list-style: none;
+      display: table-cell;
+      margin: 0;
+      padding: 0px 0px;
+      vertical-align: middle;
+      border-right: 1px solid #cc1820; }
+    #block-system-main-menu ul.menu li:last-child {
+      border-right: 0px; }
+    #block-system-main-menu ul.menu a {
+      color: white;
+      display: table-cell;
+      text-align: center;
+      font-weight: bold;
+      font-size: 16px;
+      vertical-align: middle;
+      padding: 15px 15px;
+      text-decoration: none; }
+
+#block-block-3 {
+  float: left;
+  width: 50%; }
+
+#block-block-2 {
+  float: right;
+  width: 50%; }
+
+#block-views-home-slider-block {
+  height: 100%;
+  position: relative;
+  border-bottom: 1px solid blue; }
+  #block-views-home-slider-block .content > div,
+  #block-views-home-slider-block .content {
+    height: 100%;
+    position: relative; }
+  #block-views-home-slider-block .views-row {
+    float: left;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%; }
+  #block-views-home-slider-block .text a:hover {
+    text-decoration: underline; }
+  #block-views-home-slider-block .view-content {
+    position: relative; }
+
+.view-other-images,
+.view-mls-listing-images {
+  overflow: hidden;
+  border-top: 2px solid #ddddde;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  margin-top: 10px;
+  clear: left; }
+  .view-other-images .views-row,
+  .view-mls-listing-images .views-row {
+    float: left;
+    text-align: center;
+    position: relative;
+    overflow: hidden; }
+    .view-other-images .views-row a,
+    .view-mls-listing-images .views-row a {
+      display: inline-block;
+      width: 217px;
+      height: 160px; }
+    .view-other-images .views-row a:hover:after, .view-other-images .views-row a:hover:before,
+    .view-mls-listing-images .views-row a:hover:after,
+    .view-mls-listing-images .views-row a:hover:before {
+      content: "";
+      display: block;
+      height: 160px;
+      width: 218px; }
+    .view-other-images .views-row img,
+    .view-mls-listing-images .views-row img {
+      box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5); }
+  .view-other-images .view-content,
+  .view-mls-listing-images .view-content {
+    position: relative; }
+  .view-other-images .view-header,
+  .view-other-images .view-footer,
+  .view-mls-listing-images .view-header,
+  .view-mls-listing-images .view-footer {
+    position: absolute;
+    bottom: 140px;
+    z-index: 99; }
+    .view-other-images .view-header a,
+    .view-other-images .view-footer a,
+    .view-mls-listing-images .view-header a,
+    .view-mls-listing-images .view-footer a {
+      height: 30px;
+      width: 15px;
+      font-size: 0;
+      color: transparent;
+      display: block; }
+  .view-other-images .view-header,
+  .view-mls-listing-images .view-header {
+    background: url(../images/left-arrow.png) no-repeat;
+    left: 70px; }
+  .view-other-images .view-footer,
+  .view-mls-listing-images .view-footer {
+    background: url(../images/right-arrow.png) no-repeat;
+    right: 70px; }
+
+.view-mls-listing-images .view-header {
+  left: 90px;
+  bottom: 175px; }
+
+.view-mls-listing-images .view-footer {
+  right: 90px;
+  bottom: 175px; }
+
+.phone,
+.email {
+  padding-bottom: 10px;
+  font-size: 18px; }
+
+.fax {
+  padding-bottom: 10px; }
+
+.phone:before,
+.email:before,
+.fax:before,
+.office:before,
+.location:before {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  padding-right: 10px; }
+
+.phone:before {
+  content: url("../images/cell.png"); }
+
+.email:before {
+  content: url("../images/email.png"); }
+
+.fax:before {
+  content: url("../images/fax.png"); }
+
+.office:before {
+  content: url("../images/office.png"); }
+
+.location:before {
+  content: url("../images/location.png");
+  float: left; }
+
+.view-home-slider h2,
+#block-block-7 h2 {
+  font-size: 30px;
+  color: white;
+  color: black;
+  padding-bottom: 25px;
+  font-weight: 100; }
+.view-home-slider h1,
+#block-block-7 h1 {
+  color: #0066b1;
+  font-size: 44px; }
+
+#block-block-7 {
+  max-width: 300px;
+  padding: 70px 0px;
+  float: right;
+  margin-right: 20%; }
+  #block-block-7 .email {
+    padding-bottom: 30px; }
+  #block-block-7 img {
+    padding-right: 20px;
+    vertical-align: middle; }
+
+.view-home-slider {
+  position: relative;
+  overflow: hidden;
+  height: 100%; }
+  .view-home-slider .backbg {
+    background-position: 20%; }
+  .view-home-slider .views-row {
+    position: relative; }
+  .view-home-slider > div {
+    position: relative;
+    height: 100%; }
+  .view-home-slider .views-field-field-background-image,
+  .view-home-slider .field-content {
+    width: 100%;
+    height: 100%; }
+  .view-home-slider .views-field-nothing {
+    position: absolute;
+    bottom: 0px;
+    background-color: rgba(0, 102, 177, 0.8);
+    color: white;
+    font-size: 22px;
+    max-width: 550px;
+    padding: 0px 120px;
+    overflow: hidden; }
+    .view-home-slider .views-field-nothing .address,
+    .view-home-slider .views-field-nothing .price {
+      float: left;
+      font-weight: bold; }
+    .view-home-slider .views-field-nothing .price {
+      font-size: 38px; }
+    .view-home-slider .views-field-nothing .inner-body {
+      padding: 30px 0px 20px;
+      overflow: hidden; }
+    .view-home-slider .views-field-nothing .address {
+      width: 300px;
+      padding-right: 75px; }
+    .view-home-slider .views-field-nothing .view-more {
+      clear: left;
+      margin: 0px 0px 30px; }
+    .view-home-slider .views-field-nothing a.white-button {
+      margin: 0px; }
+      .view-home-slider .views-field-nothing a.white-button:hover {
+        text-decoration: none; }
+  .view-home-slider .views-row-1 {
+    background-position: center 50px; }
+    .view-home-slider .views-row-1 h3 {
+      color: #ed1b24;
+      padding: 20px 0px; }
+    .view-home-slider .views-row-1 .view-more {
+      display: none; }
+    .view-home-slider .views-row-1 .inner-body {
+      display: none; }
+    .view-home-slider .views-row-1 a {
+      text-decoration: none;
+      color: black; }
+    .view-home-slider .views-row-1 img {
+      padding-right: 20px;
+      vertical-align: middle; }
+    .view-home-slider .views-row-1 .views-field-body,
+    .view-home-slider .views-row-1 .views-field-title {
+      max-width: 920px;
+      position: relative;
+      background-color: transparent;
+      padding: 0 10px;
+      margin-right: 20%;
+      float: right;
+      opacity: 1; }
+      .view-home-slider .views-row-1 .views-field-body h2,
+      .view-home-slider .views-row-1 .views-field-title h2 {
+        color: black; }
+  .view-home-slider .view-content {
+    position: relative;
+    height: 100%; }
+  .view-home-slider .views-row-1 .views-field-body {
+    top: 15%; }
+    .view-home-slider .views-row-1 .views-field-body p {
+      font-size: 14px;
+      padding-bottom: 20px; }
+    .view-home-slider .views-row-1 .views-field-body h3 {
+      color: #ed1b24; }
+    .view-home-slider .views-row-1 .views-field-body .field-content {
+      max-width: 330px; }
+    .view-home-slider .views-row-1 .views-field-body .field-content {
+      max-width: 370px; }
+    .view-home-slider .views-row-1 .views-field-body p.phone,
+    .view-home-slider .views-row-1 .views-field-body p.email {
+      font-size: 18px; }
+  .view-home-slider .backbg {
+    background-repeat: no-repeat;
+    -ms-behavior: url("/sites/all/themes/markwoosley/css/backgroundsize.min.htc");
+    background-size: cover;
+    width: 100%;
+    height: 100%; }
+  .view-home-slider ul.indicators {
+    z-index: 9999;
+    position: absolute;
+    bottom: 10px;
+    right: 10%;
+    padding-left: 0px; }
+    .view-home-slider ul.indicators li.active {
+      background-image: url("../images/blue-dot.png"); }
+    .view-home-slider ul.indicators li {
+      width: 5px;
+      height: 30px;
+      color: transparent;
+      font-size: 0;
+      background-image: url("../images/white-dot.png");
+      background-position: center center;
+      padding: 10px;
+      background-repeat: no-repeat;
+      display: inline-block;
+      opacity: 1;
+      cursor: pointer; }
+
+#footer1 {
+  background: url("../images/blue-back.jpg") no-repeat;
+  background-size: cover; }
+
+.front #content {
+  display: none; }
+
+a.white-button,
+a.blue-button,
+.views-field-view-node a,
+.form-submit {
+  padding: 10px;
+  display: block;
+  color: #0066b1;
+  font-size: 18px;
+  margin-top: 20px;
+  max-width: 150px;
+  margin: 20px auto;
+  text-align: center;
+  background: white;
+  font-weight: bold;
+  -webkit-appearance: none; }
+
+a.white-button {
+  background: white; }
+
+a.blue-button {
+  background: #0066b1;
+  color: white; }
+
+#block-block-4 {
+  font-size: 24px;
+  text-align: center;
+  color: white;
+  padding: 40px 10px;
+  font-weight: bold; }
+  #block-block-4 .content {
+    max-width: 500px;
+    margin: 0 auto; }
+
+.region-footer2 {
+  padding: 30px 10px; }
+
+#block-block-5 {
+  float: left;
+  width: 50%; }
+
+#block-block-5 h1 {
+  font-size: 25px;
+  color: #0066b1; }
+#block-block-5 h2 {
+  font-size: 16px;
+  font-weight: 100;
+  color: black;
+  padding-bottom: 15px; }
+#block-block-5 .box2 .phone:before,
+#block-block-5 .box2 .email:before {
+  content: ""; }
+#block-block-5 .box2 .phone:before {
+  background: url("../images/cell.png") no-repeat;
+  background-size: 15px; }
+#block-block-5 .box2 .email:before {
+  background: url("../images/email.png") no-repeat;
+  background-size: 15px;
+  height: 10px; }
+
+#block-menu-menu-footer-menu {
+  float: right; }
+  #block-menu-menu-footer-menu li {
+    list-style: none;
+    float: left; }
+  #block-menu-menu-footer-menu a {
+    font-size: 14px;
+    color: #0066b1;
+    padding: 5px 0px;
+    font-weight: bold; }
+    #block-menu-menu-footer-menu a:hover {
+      text-decoration: underline; }
+
+.box1 {
+  width: 160px;
+  float: left;
+  font-size: 13px; }
+  .box1 img {
+    width: 132px;
+    height: 36px;
+    margin-bottom: 15px; }
+
+.box2 {
+  width: 200px;
+  float: left; }
+  .box2 a {
+    color: black; }
+  .box2 .phone,
+  .box2 .email {
+    font-size: 12px; }
+
+#block-block-6 {
+  width: 300px;
+  float: right;
+  text-align: right;
+  font-size: 12px; }
+
+.footer-logos {
+  padding: 25px 0px; }
+  .footer-logos img {
+    vertical-align: middle;
+    padding-right: 15px; }
+  .footer-logos img:last-child {
+    padding-right: 0px; }
+
+img.ccilogo {
+  padding-right: 0px;
+  vertical-align: middle; }
+
+#footer1 {
+  border-bottom: 1px solid #0066b1; }
+
+#footer2 {
+  background: #e2e2e3;
+  border-top: 2px solid #ed1b24; }
+
+#content {
+  border-top: 2px solid #ed1b24; }
+  #content .inner-content {
+    margin: 40px auto; }
+    #content .inner-content p {
+      padding-bottom: 20px; }
+
+.inner-box1 {
+  max-width: 1020px;
+  margin: 0 auto;
+  position: relative; }
+
+.region-inner-header {
+  background: url(../images/inner-header.jpg) no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  border-bottom: 1px solid #0066b1; }
+
+input, select, textarea {
+  border: 1px solid #0066b1;
+  padding: 5px;
+  height: 22px;
+  display: block;
+  width: 230px;
+  -webkit-appearance: none;
+  border-radius: 0px; }
+
+textarea {
+  height: 130px; }
+
+.form-submit {
+  height: 40px;
+  background: #0066b1;
+  color: white; }
+
+.webform-component--phone {
+  float: right;
+  margin-top: -50px; }
+
+input::-webkit-input-placeholder:after,
+textarea::-webkit-input-placeholder:after {
+  content: " *";
+  display: inline-block;
+  color: red; }
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder,
+select {
+  color: #0066b1;
+  display: block;
+  font-size: 12px;
+  font-weight: bold; }
+
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+  color: black !important;
+  font-weight: 300;
+  opacity: 1; }
+
+#page-title {
+  color: #0066b1;
+  font-size: 24px;
+  text-transform: uppercase;
+  padding-bottom: 30px; }
+
+h2,
+.views-field-title {
+  color: #0066b1;
+  font-size: 22px;
+  font-weight: 300;
+  padding-bottom: 15px; }
+
+.webform-client-form {
+  max-width: 500px;
+  margin: 0 auto;
+  padding-top: 20px; }
+
+.page-node-5 #page-title {
+  display: none; }
+
+.page-node-8 .field-name-field-lease-rate,
+.page-node-8 .views-field-field-price-mls,
+.view-deatils-mls .field-name-field-lease-rate,
+.view-deatils-mls .views-field-field-price-mls {
+  color: #0066b1;
+  font-size: 36px; }
+  .page-node-8 .field-name-field-lease-rate .field-label,
+  .page-node-8 .views-field-field-price-mls .field-label,
+  .view-deatils-mls .field-name-field-lease-rate .field-label,
+  .view-deatils-mls .views-field-field-price-mls .field-label {
+    display: none; }
+
+.view-mls-listing-images .views-row a:hover:after, .view-mls-listing-images .views-row a:hover:before,
+.view-other-images .views-row a:hover:after,
+.view-other-images .views-row a:hover:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0px; }
+.view-mls-listing-images .views-row a:hover:after,
+.view-other-images .views-row a:hover:after {
+  z-index: 999;
+  background-image: url(../images/search-icon.png);
+  background-repeat: no-repeat;
+  background-position: center; }
+.view-mls-listing-images .views-row a:hover:before,
+.view-other-images .views-row a:hover:before {
+  opacity: 0.5;
+  background-color: #0066b1; }
+
+.view-open-houses,
+.view-mls,
+.view-front-page-listings {
+  max-width: 800px;
+  margin: 0 auto; }
+  .view-open-houses .views-field-field-img,
+  .view-open-houses .views-field-field-images,
+  .view-mls .views-field-field-img,
+  .view-mls .views-field-field-images,
+  .view-front-page-listings .views-field-field-img,
+  .view-front-page-listings .views-field-field-images {
+    float: left;
+    padding-right: 20px;
+    height: 200px; }
+    .view-open-houses .views-field-field-img img,
+    .view-open-houses .views-field-field-images img,
+    .view-mls .views-field-field-img img,
+    .view-mls .views-field-field-images img,
+    .view-front-page-listings .views-field-field-img img,
+    .view-front-page-listings .views-field-field-images img {
+      box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5); }
+    .view-open-houses .views-field-field-img a:hover:after, .view-open-houses .views-field-field-img a:hover:before,
+    .view-open-houses .views-field-field-images a:hover:after,
+    .view-open-houses .views-field-field-images a:hover:before,
+    .view-mls .views-field-field-img a:hover:after,
+    .view-mls .views-field-field-img a:hover:before,
+    .view-mls .views-field-field-images a:hover:after,
+    .view-mls .views-field-field-images a:hover:before,
+    .view-front-page-listings .views-field-field-img a:hover:after,
+    .view-front-page-listings .views-field-field-img a:hover:before,
+    .view-front-page-listings .views-field-field-images a:hover:after,
+    .view-front-page-listings .views-field-field-images a:hover:before {
+      width: 396px;
+      height: 200px; }
+  .view-open-houses .views-field-field-address,
+  .view-open-houses .views-field-field-lease-rate,
+  .view-mls .views-field-field-address,
+  .view-mls .views-field-field-lease-rate,
+  .view-front-page-listings .views-field-field-address,
+  .view-front-page-listings .views-field-field-lease-rate {
+    font-size: 20px;
+    color: #0066b1;
+    font-weight: bold; }
+  .view-open-houses .views-field-view-node a,
+  .view-mls .views-field-view-node a,
+  .view-front-page-listings .views-field-view-node a {
+    background: #0066b1;
+    color: white;
+    margin: 0px; }
+  .view-open-houses .views-row,
+  .view-mls .views-row,
+  .view-front-page-listings .views-row {
+    position: relative;
+    overflow: hidden;
+    border-bottom: 2px solid #ddd;
+    margin-bottom: 25px;
+    padding-bottom: 25px; }
+  .view-open-houses .views-field-view-node,
+  .view-open-houses .views-field-nothing,
+  .view-mls .views-field-view-node,
+  .view-mls .views-field-nothing,
+  .view-front-page-listings .views-field-view-node,
+  .view-front-page-listings .views-field-nothing {
+    position: absolute;
+    overflow: hidden;
+    width: 150px;
+    bottom: 25px;
+    left: 340px;
+    float: left; }
+  .view-open-houses .views-field-nothing,
+  .view-mls .views-field-nothing,
+  .view-front-page-listings .views-field-nothing {
+    bottom: 5px; }
+  .view-open-houses .views-field-field-lease-rate,
+  .view-mls .views-field-field-lease-rate,
+  .view-front-page-listings .views-field-field-lease-rate {
+    float: left;
+    font-size: 20px; }
+  .view-open-houses .views-field-field-address,
+  .view-mls .views-field-field-address,
+  .view-front-page-listings .views-field-field-address {
+    width: 335px;
+    padding-right: 10px;
+    float: left; }
+  .view-open-houses .views-label-body,
+  .view-mls .views-label-body,
+  .view-front-page-listings .views-label-body {
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+    padding-top: 22px; }
+  .view-open-houses .views-label-field-description,
+  .view-mls .views-label-field-description,
+  .view-front-page-listings .views-label-field-description {
+    color: black;
+    font-weight: bold; }
+  .view-open-houses .views-field-body,
+  .view-open-houses .views-field-field-description,
+  .view-mls .views-field-body,
+  .view-mls .views-field-field-description,
+  .view-front-page-listings .views-field-body,
+  .view-front-page-listings .views-field-field-description {
+    width: 50%;
+    float: left;
+    display: block;
+    font-size: 12px; }
+  .view-open-houses .view-content,
+  .view-mls .view-content,
+  .view-front-page-listings .view-content {
+    padding: 0 10px; }
+
+.page-open-houses #page-title {
+  color: #ed1b24; }
+
+#block-views-front-news-block-block,
+#block-views-front-page-listings-block {
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 0 10px; }
+  #block-views-front-news-block-block h2,
+  #block-views-front-page-listings-block h2 {
+    padding-left: 10px; }
+  #block-views-front-news-block-block .view-footer,
+  #block-views-front-page-listings-block .view-footer {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold; }
+    #block-views-front-news-block-block .view-footer a,
+    #block-views-front-page-listings-block .view-footer a {
+      color: #ed1b24; }
+      #block-views-front-news-block-block .view-footer a:hover,
+      #block-views-front-page-listings-block .view-footer a:hover {
+        text-decoration: underline; }
+  #block-views-front-news-block-block .views-field-nothing,
+  #block-views-front-page-listings-block .views-field-nothing {
+    position: relative;
+    bottom: 0px;
+    width: 55%;
+    float: left;
+    left: 0px; }
+  #block-views-front-news-block-block .views-field-nothing-1,
+  #block-views-front-page-listings-block .views-field-nothing-1 {
+    position: absolute;
+    bottom: 5px;
+    left: 340px; }
+  #block-views-front-news-block-block .views-label-field-description,
+  #block-views-front-page-listings-block .views-label-field-description {
+    padding-top: 20px; }
+
+.page-news #page-title {
+  color: #ed1b24; }
+.page-news .blue-button {
+  margin: 0; }
+
+.node-type-news .field-label {
+  max-width: 80px; }
+
+#block-views-front-news-block-block {
+  text-align: left;
+  overflow: hidden;
+  border-bottom: 1px solid #0066b1; }
+  #block-views-front-news-block-block h2 {
+    padding-left: 0px; }
+  #block-views-front-news-block-block .blue-button {
+    margin: 30px 0; }
+  #block-views-front-news-block-block .views-field-nothing {
+    width: 100%; }
+  #block-views-front-news-block-block .views-field-title {
+    font-weight: bold; }
+
+.view-mls .views-field-field-images {
+  width: 320px;
+  height: 200px; }
+  .view-mls .views-field-field-images .field-content {
+    width: 320px;
+    height: 200px;
+    overflow: hidden; }
+    .view-mls .views-field-field-images .field-content img {
+      width: 100%;
+      height: auto; }
+
+.field {
+  padding-bottom: 15px; }
+
+.views-label,
+.field-label {
+  font-size: 16px;
+  display: block;
+  color: #0066b1; }
+
+.view-deatils-mls .views-field-field-images,
+.field-name-field-img {
+  float: left;
+  padding-right: 60px;
+  margin-bottom: 20px;
+  position: relative; }
+  .view-deatils-mls .views-field-field-images a,
+  .field-name-field-img a {
+    display: inline-block;
+    position: relative; }
+  .view-deatils-mls .views-field-field-images a:hover:after,
+  .field-name-field-img a:hover:after {
+    content: "";
+    display: block;
+    width: 20px;
+    height: 30px;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    z-index: 999;
+    background: url(../images/search-icon-small.png) no-repeat; }
+  .view-deatils-mls .views-field-field-images img,
+  .field-name-field-img img {
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5); }
+
+.view-deatils-mls .views-label,
+.view-deatils-mls .field-content,
+.field-label,
+.field-items {
+  display: inline-block; }
+
+.field-label,
+.view-deatils-mls .views-label {
+  width: 150px; }
+
+#block-views-mls-block-1 {
+  padding: 40px 0px;
+  max-width: 874px;
+  margin: 0 auto; }
+  #block-views-mls-block-1 h2 {
+    color: #ed1b24;
+    font-size: 32px; }
+  #block-views-mls-block-1 p {
+    padding-bottom: 20px; }
+
+.node-type-open-houses .node-open-houses,
+.view-deatils-mls {
+  margin: 0 auto;
+  max-width: 800px; }
+
+.view-deatils-mls .right span {
+  float: left; }
+.view-deatils-mls .views-field-type {
+  border-bottom: 2px solid #ddddde;
+  margin-bottom: 20px; }
+.view-deatils-mls .mls-number {
+  font-size: 22px;
+  color: #0066b1;
+  font-weight: bold; }
+.view-deatils-mls .views-label {
+  font-weight: bold; }
+.view-deatils-mls .views-field,
+.view-deatils-mls .field-name-field-lease-rate {
+  overflow: hidden;
+  padding-bottom: 15px; }
+.view-deatils-mls .views-field-field-description {
+  clear: left; }
+
+.field-name-body {
+  clear: left; }
+
+.field-name-field-address .field-items {
+  width: 200px;
+  vertical-align: top; }
+
+.field-type-text,
+.field-type-integer {
+  float: left;
+  width: 45%; }
+
+.field-name-field-type {
+  border-bottom: 2px solid #ddddde;
+  margin-bottom: 10px; }
+
+#block-block-8 {
+  display: none; }
+
+#error {
+  color: #ed1b24;
+  text-align: center; }
+
+#block-block-9 {
+  display: none; }
+
+.overlay {
+  position: fixed;
+  display: block;
+  width: 500px;
+  z-index: 99;
+  text-align: center;
+  padding: 20px;
+  top: 50%;
+  background: white;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
+  top: 65%;
+  left: 50%;
+  top: 16% \9;
+  -webkit-transform: translateY(-50%) translateX(-50%);
+  -ms-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%); }
+
+.page-mls .region-inner-header {
+  background: none;
+  background: url(../images/listing-header-back.png);
+  background-size: cover; }
+.page-mls #page-title {
+  display: none; }
+.page-mls select {
+  height: 42px;
+  -webkit-appearance: none; }
+.page-mls .views-exposed-widget {
+  padding: 0px;
+  padding: 10px;
+  padding-right: 85px; }
+  .page-mls .views-exposed-widget label {
+    padding-bottom: 10px; }
+.page-mls .sbHolder li {
+  list-style: none; }
+  .page-mls .sbHolder li a {
+    display: block;
+    padding: 5px;
+    color: #0066b1;
+    font-weight: bold;
+    border-bottom: 1px solid #afafb0; }
+    .page-mls .sbHolder li a:hover {
+      background: #0066b1;
+      color: white; }
+.page-mls .sbHolder ul {
+  position: absolute;
+  width: 250px;
+  top: 70px !important;
+  border: 1px solid #0066b1;
+  background: #f6f5f5;
+  z-index: 999; }
+.page-mls .region-inner-header {
+  overflow: visible; }
+.page-mls .sbSelector {
+  width: 230px;
+  display: block;
+  border: 1px solid #0066b1;
+  padding: 10px;
+  color: #0066b1;
+  font-weight: bold;
+  background: url(../images/arrow-filter.png) no-repeat;
+  background-position: 95%; }
+.page-mls .sbSelector.changeback {
+  background: url(../images/arrow-up.png) no-repeat !important;
+  background-position: 95% !important; }
+.page-mls #edit-field-type-list-value-wrapper,
+.page-mls #edit-field-type-list-value--2-wrapper {
+  float: none;
+  position: relative; }
+.page-mls #edit-field-price-mls1-value-wrapper {
+  margin-left: 350px;
+  position: relative; }
+.page-mls #edit-field-bathrooms-mls-value-wrapper,
+.page-mls #edit-field-price-mls1-value-1-wrapper {
+  padding-right: 0px; }
+.page-mls #edit-field-type-list-value-wrapper {
+  float: left; }
+.page-mls #edit-field-type-list-value--2-wrapper, .page-mls #edit-field-type-list-value-wrapper, .page-mls #edit-field-bedrooms-mls-value--2-wrapper,
+.page-mls #edit-field-bedrooms-mls-value-wrapper, .page-mls #edit-field-bathrooms-mls-value--2-wrapper, .page-mls #edit-field-bathrooms-mls-value-wrapper,
+.page-mls #edit-field-price-mls1-value--2-wrapper, .page-mls #edit-field-price-mls1-value-1-wrapper, .page-mls #edit-field-price-mls1-value-1--2-wrapper {
+  position: relative; }
+.page-mls #edit-field-price-mls1-value--2-wrapper {
+  clear: left;
+  position: relative; }
+.page-mls #block-views-exp-mls-page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 40px 10px 20px; }
+.page-mls .views-submit-button {
+  float: none;
+  clear: left;
+  max-width: 150px;
+  margin: 0 auto;
+  padding-right: 0px;
+  overflow: hidden; }
+.page-mls .form-submit {
+  cursor: pointer; }
+.page-mls .inner-box1,
+.page-mls #content .inner-content {
+  max-width: 100%;
+  padding: 0; }
+
+.pager-next,
+.pager-previous,
+.pager-current {
+  color: #0066b1; }
+  .pager-next a,
+  .pager-previous a,
+  .pager-current a {
+    color: #0066b1; }
+
+@media screen and (max-width: 1300px) {
+  .view-home-slider .backbg {
+    background-position: 100%;
+    background-position: center center; }
+
+  .view-home-slider .views-row-1 .views-field-body {
+    margin-right: 0; } }
+@media screen and (max-width: 1024px) {
+  .region-inner-header {
+    background-position: -231px; }
+
+  .view-home-slider .backbg {
+    background-position: 33%; }
+
+  .view-home-slider .views-row-1 .views-field-body p {
+    padding-bottom: 10px; }
+  .view-home-slider .views-row-1 h3 {
+    padding: 10px 0px; }
+  .view-home-slider .views-row-1 h2 {
+    padding-bottom: 15px; }
+  .view-home-slider ul.indicators {
+    right: 5%; } }
+@media screen and (max-width: 990px) {
+  #block-block-1 {
+    font-size: 18px;
+    width: 250px; }
+
+  #block-system-main-menu {
+    width: auto; }
+    #block-system-main-menu ul.menu a {
+      padding: 15px 8px; }
+
+  .view-home-slider .views-field-nothing {
+    padding: 0px 20px; }
+
+  .view-open-houses .views-field-field-img,
+  .view-open-houses .views-field-field-images,
+  .view-mls .views-field-field-img,
+  .view-mls .views-field-field-images {
+    width: 300px;
+    height: auto;
+    padding-bottom: 20px; }
+    .view-open-houses .views-field-field-img img,
+    .view-open-houses .views-field-field-images img,
+    .view-mls .views-field-field-img img,
+    .view-mls .views-field-field-images img {
+      width: 100% !important;
+      height: auto; }
+  .view-open-houses .views-field-view-node,
+  .view-open-houses .views-field-nothing,
+  .view-mls .views-field-view-node,
+  .view-mls .views-field-nothing {
+    position: relative;
+    left: 20px;
+    bottom: 0px; }
+  .view-open-houses .views-field-field-lease-rate,
+  .view-mls .views-field-field-lease-rate {
+    float: none; }
+  .view-open-houses .views-field-view-node,
+  .view-mls .views-field-view-node {
+    left: 0px; }
+  .view-open-houses .views-field-field-address p,
+  .view-mls .views-field-field-address p {
+    padding-bottom: 0px !important; }
+  .view-open-houses .views-field-field-address,
+  .view-mls .views-field-field-address {
+    width: 363px; }
+  .view-open-houses .views-label,
+  .view-mls .views-label {
+    padding-bottom: 0px; }
+  .view-open-houses .views-field-field-description,
+  .view-mls .views-field-field-description {
+    padding-top: 7px;
+    padding-left: 20px; }
+  .view-open-houses .views-label-body,
+  .view-mls .views-label-body {
+    padding-top: 7px; }
+
+  .view-open-houses .views-field-field-address {
+    width: 390px; }
+
+  .page-mls #block-views-exp-mls-page {
+    max-width: 610px; }
+
+  .field-name-field-img {
+    padding-right: 20px; }
+
+  .field-type-text, .field-type-integer {
+    width: 40%; }
+
+  #block-menu-menu-footer-menu ul.menu li {
+    margin: 0px; }
+    #block-menu-menu-footer-menu ul.menu li a {
+      font-size: 12px;
+      padding: 0px; }
+
+  .view-mls .views-field-nothing-1 {
+    width: 50%;
+    float: left;
+    padding-left: 20px; }
+
+  .view-other-images,
+  .view-mls-listing-images {
+    max-width: 700px;
+    margin: 0 auto; }
+    .view-other-images .view-header,
+    .view-mls-listing-images .view-header {
+      left: 40px; }
+    .view-other-images .view-footer,
+    .view-mls-listing-images .view-footer {
+      right: 40px; }
+
+  #block-views-front-page-listings-block h2 {
+    padding-left: 10px; }
+  #block-views-front-page-listings-block .views-field-nothing {
+    width: 50%; }
+  #block-views-front-page-listings-block .views-label-field-description {
+    padding-top: 7px; }
+
+  #edit-field-bedrooms-mls-value-wrapper {
+    clear: left; }
+
+  .page-mls #edit-field-price-mls1-value-wrapper {
+    margin-left: 0px;
+    clear: left; } }
+@media screen and (max-width: 800px) {
+  .view-other-images .view-header,
+  .view-mls-listing-images .view-header {
+    left: 10px; }
+  .view-other-images .view-footer,
+  .view-mls-listing-images .view-footer {
+    right: 10px; } }
+@media screen and (min-width: 768px) {
+  #block-system-main-menu {
+    display: block !important; } }
+@media screen and (max-width: 767px) {
+  #block-block-6 {
+    float: none;
+    text-align: center;
+    width: 100%; }
+
+  .view-deatils-mls .views-field-nothing-2 {
+    clear: left; }
+  .view-deatils-mls .views-field-field-images {
+    width: 300px; }
+    .view-deatils-mls .views-field-field-images img {
+      width: 100% !important;
+      height: auto; }
+
+  .backgroundcolor, .region-inner-header, .view-home-slider .views-row-1 {
+    background: -webkit-linear-gradient(white, #e3e3e4);
+    /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(white, #e3e3e4);
+    /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(white, #e3e3e4);
+    /* For Firefox 3.6 to 15 */
+    background: linear-gradient(white, #e3e3e4); }
+
+  .region-inner-header {
+    background: none; }
+
+  .field-name-field-img {
+    float: none; }
+    .field-name-field-img img {
+      width: 100% !important; }
+
+  .field-type-text,
+  .field-type-integer {
+    float: none;
+    width: 100%; }
+
+  .view-home-slider .backbg {
+    background-position: 50%; }
+
+  .view-open-houses .views-field-field-img,
+  .view-open-houses .views-field-field-images,
+  .view-mls .views-field-field-img,
+  .view-mls .views-field-field-images {
+    float: none;
+    padding-bottom: 20px; }
+  .view-open-houses .views-row,
+  .view-mls .views-row {
+    padding-bottom: 0px; }
+  .view-open-houses .views-field-field-address,
+  .view-mls .views-field-field-address {
+    float: none;
+    width: 100%;
+    padding-bottom: 0px; }
+  .view-open-houses .views-field-nothing,
+  .view-mls .views-field-nothing {
+    max-width: 150px;
+    margin: 0 auto;
+    float: none;
+    clear: left;
+    left: 0px; }
+  .view-open-houses .views-field-body,
+  .view-open-houses .views-field-field-description,
+  .view-mls .views-field-body,
+  .view-mls .views-field-field-description {
+    display: none; }
+
+  .view-open-houses .views-field-field-address {
+    width: 367px; }
+
+  #block-views-front-page-listings-block .views-field-nothing-1 {
+    clear: left;
+    position: relative;
+    left: 0px;
+    bottom: -20px; }
+  #block-views-front-page-listings-block .views-field-nothing {
+    width: 100%; }
+  #block-views-front-page-listings-block .views-field-field-address {
+    padding: 20px 0px;
+    width: 100%; }
+  #block-views-front-page-listings-block .views-field-field-description {
+    width: 100%; }
+
+  .view-open-houses .views-field-field-address {
+    padding-bottom: 20px; }
+  .view-open-houses .views-field-view-node {
+    max-width: 150px;
+    float: none;
+    margin: 20px auto; }
+
+  #block-menu-menu-footer-menu {
+    display: none; }
+
+  #block-block-5 {
+    max-width: 322px;
+    margin: 0 auto;
+    width: 100%;
+    overflow: hidden;
+    float: none; }
+    #block-block-5 .phone:before,
+    #block-block-5 .email:before,
+    #block-block-5 .fax:before,
+    #block-block-5 .office:before,
+    #block-block-5 .location:before {
+      padding-right: 2px; }
+    #block-block-5 .box1 {
+      width: 143px;
+      font-size: 11px; }
+    #block-block-5 .box2 {
+      width: 157px; }
+      #block-block-5 .box2 .phone,
+      #block-block-5 .box2 .email {
+        font-size: 11px; }
+      #block-block-5 .box2 h1 {
+        font-size: 22px; }
+      #block-block-5 .box2 h2 {
+        font-size: 14px; }
+
+  #block-block-8 {
+    display: block;
+    background: url("../images/mobile-menu.svg") no-repeat;
+    height: 30px;
+    width: 40px;
+    float: right;
+    margin-top: 15px; }
+    #block-block-8 a {
+      font-size: 0px;
+      color: transparent;
+      height: 30px;
+      display: block;
+      width: 40px; }
+
+  #block-block-1 {
+    width: 235px; }
+
+  #block-block-7 {
+    width: 100%;
+    padding: 20px 10px;
+    float: none;
+    margin: 0 auto;
+    text-align: center; }
+
+  .view-home-slider .views-field-nothing {
+    padding: 0px 10px;
+    background-color: rgba(0, 102, 177, 0.6);
+    width: 100%; }
+    .view-home-slider .views-field-nothing .price,
+    .view-home-slider .views-field-nothing .address {
+      float: none; }
+    .view-home-slider .views-field-nothing .address {
+      margin-bottom: 10px; }
+  .view-home-slider .views-row-1 .text {
+    display: none; }
+  .view-home-slider .views-row-1 .backbg {
+    display: none; }
+  .view-home-slider .views-row-1 h1 {
+    padding-top: 0px;
+    font-size: 36px; }
+  .view-home-slider .views-row-1 h3 {
+    font-size: 18px;
+    padding-top: 0px; }
+  .view-home-slider .views-row-1 h2 {
+    font-size: 24px;
+    padding-bottom: 15px; }
+  .view-home-slider .views-row-1 .phone,
+  .view-home-slider .views-row-1 .email {
+    padding-bottom: 10px; }
+  .view-home-slider .views-row-1 .views-field-body {
+    max-width: 100%;
+    margin: 0 auto;
+    float: none;
+    text-align: center;
+    padding: 0 10px;
+    top: 50%;
+    padding-top: 28px;
+    -webkit-transform: translateY(-45%);
+    -moz-transform: translateY(-45%);
+    transform: translateY(-45%); }
+    .view-home-slider .views-row-1 .views-field-body .field-content {
+      max-width: 100%; }
+    .view-home-slider .views-row-1 .views-field-body h3 {
+      padding: 15px 0px; }
+    .view-home-slider .views-row-1 .views-field-body p {
+      padding-bottom: 10px; }
+
+  #header {
+    background: #e21f27; }
+
+  #block-system-main-menu {
+    display: none;
+    width: 150px;
+    position: absolute;
+    right: 0;
+    float: none;
+    top: 60px;
+    background: #ed1b24; }
+    #block-system-main-menu li.leaf {
+      padding: 0px; }
+    #block-system-main-menu ul.menu {
+      float: none;
+      display: block; }
+      #block-system-main-menu ul.menu a {
+        display: block;
+        padding: 15px 10px;
+        text-align: right; }
+      #block-system-main-menu ul.menu li {
+        padding: 0px;
+        border-right: 0px;
+        display: block;
+        border-top: 1px solid #cc1820; }
+      #block-system-main-menu ul.menu a:hover {
+        background: #cc1820; }
+
+  .webform-component--phone {
+    float: none;
+    margin-top: 0px; } }
+@media screen and (max-width: 630px) {
+  .page-mls #block-views-exp-mls-page {
+    max-width: 260px; } }
+@media screen and (max-width: 550px) {
+  .views-exposed-form .views-exposed-widget {
+    float: none;
+    padding-right: 0px; }
+
+  #edit-field-type-list-value--2-wrapper,
+  #edit-field-type-list-value-wrapper,
+  #edit-field-bathrooms-mls-value-wrapper,
+  #edit-field-price-mls1-value-wrapper,
+  #edit-field-bedrooms-mls-value--2-wrapper,
+  #edit-field-bedrooms-mls-value-wrapper,
+  #edit-field-bathrooms-mls-value--2-wrapper,
+  #edit-field-price-mls1-value--2-wrapper,
+  #edit-field-price-mls1-value-1-wrapper,
+  #edit-field-price-mls1-value-1--2-wrapper {
+    max-width: 250px;
+    margin: 0 auto; }
+
+  .view-mls .views-field-nothing-1 {
+    width: 95%;
+    padding-left: 0px; }
+
+  #block-views-front-page-listings-block .views-field-field-description {
+    display: none; } }

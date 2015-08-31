@@ -1,0 +1,30 @@
+name = markwoolsey
+description = markwoolsey Custom
+core = 7.x
+
+scripts[] = js/banner-slider.js
+scripts[] = js/image-slider.js
+scripts[] = js/mls-listing-slider.js
+scripts[] = swipebox-master/js/jquery.swipebox.min.js
+scripts[] = js/swipebox.js
+scripts[] = js/mobile-menu.js
+scripts[] = js/form-validation.js
+scripts[] = js/jquery.selectbox.min.js
+
+;stylesheets[all][] = stylesheets/screen.css
+stylesheets[all][] = css/screen.css
+
+
+stylesheets[all][] = swipebox-master/css/swipebox.min.css
+
+regions[header] = Header
+regions[front-header] = Front Header
+regions[inner-header] = Inner Header
+regions[help] = Help
+regions[front-listings] = front listings
+regions[content] = Content
+regions[sidebar] = Sidebar
+regions[widgets] = Widgets
+regions[footer1] = Footer blue
+regions[footer2] = Footer contact
+

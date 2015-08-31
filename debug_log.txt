@@ -1,0 +1,24 @@
+* Hostname was NOT found in DNS cache
+*   Trying 65.110.168.236...
+* connect to 65.110.168.236 port 8080 failed: Connection timed out
+* Failed to connect to rets.mresdms.com port 8080: Connection timed out
+* Closing connection 0
+
+* Hostname was NOT found in DNS cache
+*   Trying 65.110.168.236...
+* connect to 65.110.168.236 port 8080 failed: Connection timed out
+* Failed to connect to rets.mresdms.com port 8080: Connection timed out
+* Closing connection 0
+
+* Hostname was NOT found in DNS cache
+*   Trying 65.110.168.236...
+* connect to 65.110.168.236 port 8080 failed: Connection timed out
+* Failed to connect to rets.mresdms.com port 8080: Connection timed out
+* Closing connection 0
+
+* Hostname was NOT found in DNS cache
+*   Trying 65.110.168.236...
+* connect to 65.110.168.236 port 8080 failed: Connection timed out
+* Failed to connect to rets.mresdms.com port 8080: Connection timed out
+* Closing connection 0
+

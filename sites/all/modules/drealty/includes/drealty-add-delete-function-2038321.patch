@@ -1,0 +1,39 @@
+diff --git a/includes/drealty.listing.admin.inc b/includes/drealty.listing.admin.inc
+index 80a8776..39da958 100644
+--- a/includes/drealty.listing.admin.inc
++++ b/includes/drealty.listing.admin.inc
+@@ -190,7 +190,7 @@ function drealty_listing_admin_overview($form, &$form_state, $arg) {
+       'id' => $listing->id,
+       'mls_id' => array('data' => array('#type' => 'link', '#title' => $listing->rets_id, '#href' => 'drealty_listing/' . $listing->id)),
+       'title' => $listing->label,
+-      'type' => $listing->type,      
++      'type' => $listing->type,
+       'updated' => format_date($listing->changed, 'short'),
+       'operations' => theme('links', array('links' => $links, 'attributes' => array('class' => array('links', 'inline', 'operations')))),
+     );
+@@ -232,7 +232,7 @@ function drealty_listing_edit_form($form, &$form_state, $op, $listing) {
+ 
+ 
+   if ($listing->rets_imported) {
+-    
++
+   }
+ 
+   field_attach_form('drealty_listing', $listing, $form, $form_state);
+@@ -285,6 +285,16 @@ function drealty_listing_edit_form_submit($form, &$form_state) {
+ }
+ 
+ /**
++ * Delete op submit handler for the listing form.
++ */
++function drealty_listing_form_submit_delete($form, &$form_state) {
++  $listing = $form_state['listing'];
++  $listing->delete();
++  // Redirect back to the content list.
++  $form_state['redirect'] = 'admin/content/drealty_listings';
++}
++
++/**
+  * UI Controller
+  */
+ class DrealtyListingTypeUIController extends EntityDefaultUIController {
